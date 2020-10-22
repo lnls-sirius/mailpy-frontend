@@ -1,8 +1,18 @@
 import React from 'react';
+import {
+    MemoryRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useParams,
+    useRouteMatch,
+    withRouter
+} from "react-router-dom";
 
 import api from '../api';
 
-function Entry(props) {
+
+function EntryRow(props) {
     const {
         alarm_values,
         condition,
@@ -28,7 +38,7 @@ function Entry(props) {
     </tr>
 }
 
-class Entries extends React.Component {
+class EntriesTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -45,30 +55,55 @@ class Entries extends React.Component {
         this.updateEntries();
     }
 
-    renderEntries = () => {
+    renderEntriesRow = () => {
         const { entries } = this.state;
-        return entries.map(entry => Entry(entry));
+        return entries.map(entry => EntryRow(entry));
     }
 
     render() {
-        return <div>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>pvname</th>
-                        <th>unit</th>
-                        <th>condition</th>
-                        <th>emails</th>
-                        <th>email_timeout</th>
-                        <th>group</th>
-                        <th>subject</th>
-                        <th>warning_message</th>
-                        <th>alarm_values</th>
-                    </tr>
-                    {this.renderEntries()}
-                </tbody>
-            </table>
-        </div>;
+        return <table>
+            <tbody>
+                <tr>
+                    <th>pvname</th>
+                    <th>unit</th>
+                    <th>condition</th>
+                    <th>emails</th>
+                    <th>email_timeout</th>
+                    <th>group</th>
+                    <th>subject</th>
+                    <th>warning_message</th>
+                    <th>alarm_values</th>
+                </tr>
+                {this.renderEntriesRow()}
+            </tbody>
+        </table>
     }
 }
-export default Entries;
+class Entries extends React.Component{
+    constructor(props){
+        super(props);
+    }
+    render(){
+        console.log(this.props, window.location.pathname); // match object
+        return <div>
+            <Switch>
+                <Route exact path={this.props.path} component={EntriesTable}/>
+            </Switch>
+        </div>
+    }
+}
+/*
+function Entries(props) {
+    let { path, url } = useRouteMatch();
+    console.log(path,url);
+    return (
+        <div>
+            <Switch>
+                <Route path={path}>
+                    <EntriesTable />
+                </Route>
+            </Switch>
+        </div>
+    );
+}*/
+export default withRouter(Entries);

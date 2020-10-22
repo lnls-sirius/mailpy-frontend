@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  mailpy-frontend:
+    image: node:12.19.0-stretch
+    working_dir: /app
+    command: sleep infinity
+    network_mode: host
+    environment:
+      API_URI: 'http://10.0.6.61:1337'
+    volumes:
+      - '../.:/app'
+

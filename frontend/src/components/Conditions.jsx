@@ -1,29 +1,27 @@
-import React from 'react';
+import React from "react";
 
-import api from '../api';
+import { DataGrid } from "@material-ui/data-grid";
 
-function Condition(props) {
-    const {
-        name,
-        desc,
-        _id
-    } = props;
-    return <tr key={_id}>
-        <td>{name}</td>
-        <td>{desc}</td>
-    </tr>
-}
+import api from "../api";
+
+const columns = [
+    {field: "name", headerName: "Condition", width: 240},
+    {field: "desc", headerName: "Description", width: 550},
+];
 
 class Conditions extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             conditions: []
-        }
+        };
     }
 
     updateConditions = async () => {
         const conditions = await api.getConditions();
+        conditions.forEach(e=>{
+            e.id = e._id;
+        });
         this.setState({ conditions: conditions });
     }
 
@@ -31,22 +29,10 @@ class Conditions extends React.Component {
         this.updateConditions();
     }
 
-    renderConditions = () => {
-        const { conditions } = this.state;
-        return conditions.map(condition => Condition(condition));
-    }
-
     render() {
-        return <div>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                    </tr>
-                    {this.renderConditions()}
-                </tbody>
-            </table>
+        const {conditions} = this.state;
+        return <div style={{ height: 600, width: "100%" }}>
+            <DataGrid rowHeight={30} rows={conditions} columns={columns} autoPageSize disableSelectionOnClick/>
         </div>;
     }
 }

@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import Typography from "@material-ui/core/Typography";
+
 function Home() {
     return <Typography paragraph>
         EPICS PV monitoring system. Check their the specified operation values and
         send an e-mail to a list of targets with a warning message
         if the based on the specified condition.
-    </Typography>
+    </Typography>;
 }
 export default Home;

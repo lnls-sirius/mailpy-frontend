@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 import { DataGrid } from "@material-ui/data-grid";
 
-import api from '../api';
+import api from "../api";
 
 const columns = [
     {field: "name", headerName: "Condition", width: 240},
@@ -14,13 +14,13 @@ class Conditions extends React.Component {
         super(props);
         this.state = {
             conditions: []
-        }
+        };
     }
 
     updateConditions = async () => {
         const conditions = await api.getConditions();
         conditions.forEach(e=>{
-            e['id'] = e['_id'];
+            e.id = e._id;
         });
         this.setState({ conditions: conditions });
     }
@@ -31,7 +31,7 @@ class Conditions extends React.Component {
 
     render() {
         const {conditions} = this.state;
-        return <div style={{ height:600, width: "100%" }}>
+        return <div style={{ height: 600, width: "100%" }}>
             <DataGrid rowHeight={30} rows={conditions} columns={columns} autoPageSize disableSelectionOnClick/>
         </div>;
     }

@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
 import { DataGrid } from "@material-ui/data-grid";
 
-import api from '../api';
+import api from "../api";
 
 const columns = [
-    {field:"name",headerName: "Name", width: 240},
-    {field:"enabled",headerName: "Enabled", width: 110},
+    {field: "name", headerName: "Name", width: 240},
+    {field: "enabled", headerName: "Enabled", width: 110},
 ];
 
 
@@ -15,13 +15,13 @@ class Groups extends React.Component {
         super(props);
         this.state = {
             groups: []
-        }
+        };
     }
 
     updateGroups = async () => {
         const data = await api.getGroups();
         data.forEach(e=> {
-            e['id'] = e['_id'];
+            e.id = e._id;
         });
         this.setState({ groups: data });
     }
@@ -34,10 +34,10 @@ class Groups extends React.Component {
         const { groups }= this.state;
         return (
             <div style={{ height: 600, width: "100%" }}>
-              <DataGrid 
-                rowHeight={30} rows={groups} columns={columns} autoPageSize disableSelectionOnClick/>
+                <DataGrid
+                    rowHeight={30} rows={groups} columns={columns} autoPageSize disableSelectionOnClick/>
             </div>
-          );
+        );
     }
 }
 

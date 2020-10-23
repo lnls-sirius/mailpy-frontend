@@ -1,18 +1,14 @@
 import React from 'react';
 
+import { DataGrid } from "@material-ui/data-grid";
+
 import api from '../api';
 
-function Group(props) {
-    const {
-        name,
-        enabled,
-        _id
-    } = props;
-    return <tr key={_id}>
-        <td>{name}</td>
-        <td>{enabled ? 'Enabled' : 'Disabled'}</td>
-    </tr>
-}
+const columns = [
+    {field:"name",headerName: "Name", width: 240},
+    {field:"enabled",headerName: "Enabled", width: 110},
+];
+
 
 class Groups extends React.Component {
     constructor(props) {
@@ -24,6 +20,9 @@ class Groups extends React.Component {
 
     updateGroups = async () => {
         const data = await api.getGroups();
+        data.forEach(e=> {
+            e['id'] = e['_id'];
+        });
         this.setState({ groups: data });
     }
 
@@ -31,23 +30,15 @@ class Groups extends React.Component {
         this.updateGroups();
     }
 
-    renderGroups = () => {
-        const { groups } = this.state;
-        return groups.map(group => Group(group));
-    }
-
     render() {
-        return <div>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Name</th>
-                        <th>Enabled</th>
-                    </tr>
-                    {this.renderGroups()}
-                </tbody>
-            </table>
-        </div>;
+        const { groups }= this.state;
+        return (
+            <div style={{ height: 600, width: "100%" }}>
+              <DataGrid 
+                rowHeight={30} rows={groups} columns={columns} autoPageSize disableSelectionOnClick/>
+            </div>
+          );
     }
 }
+
 export default Groups;

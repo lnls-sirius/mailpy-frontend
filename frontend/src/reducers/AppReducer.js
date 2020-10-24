@@ -1,4 +1,4 @@
-import Actions from '../actions/Actions';
+import Actions from "../actions/Actions";
 
 const initialState = {
     networkRequests: 0,

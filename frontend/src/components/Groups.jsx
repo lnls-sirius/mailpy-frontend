@@ -2,7 +2,7 @@ import React from "react";
 
 import { DataGrid } from "@material-ui/data-grid";
 
-import MailpyController from '../controllers/Mailpy';
+import MailpyController from "../controllers/Mailpy";
 
 const columns = [
     {field: "name", headerName: "Name", width: 240},

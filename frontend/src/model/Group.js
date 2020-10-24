@@ -1,5 +1,5 @@
 class Group {
-    constructor(props){
+    constructor(props) {
         const { _id, name, enabled } = props;
         this.id = _id;
         this.name = name;

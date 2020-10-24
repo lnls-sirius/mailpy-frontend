@@ -56,13 +56,13 @@ function AppRouterButtons(props) {
             <Divider />
             <ListItem>
                 <ListItemText
-                primary={name}
-                secondary={
-                    <React.Fragment>
-                    {email}
-                  </React.Fragment>
+                    primary={name}
+                    secondary={
+                        <React.Fragment>
+                            {email}
+                        </React.Fragment>
 
-                }
+                    }
                 />
             </ListItem>
         </Drawer>

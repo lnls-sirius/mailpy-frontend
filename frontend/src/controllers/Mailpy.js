@@ -1,18 +1,18 @@
-import EntryModel from '../model/Entry';
-import ConditionModel from '../model/Condition';
-import GroupModel from '../model/Group';
+import EntryModel from "../model/Entry";
+import ConditionModel from "../model/Condition";
+import GroupModel from "../model/Group";
 
-import MailpyApi from './api';
+import MailpyApi from "./api";
 
 class MailpyController {
-    async getEntries(){
+    async getEntries() {
         const json = await MailpyApi.getEntries();
         return json.map((entry) => {
             return new EntryModel(entry);
         });
     }
 
-    async getGroups(){
+    async getGroups() {
         const json = await MailpyApi.getGroups();
         return json.map((entry) => {
             return new GroupModel(entry);
@@ -20,7 +20,7 @@ class MailpyController {
 
     }
 
-    async getConditions(){
+    async getConditions() {
         const json = await MailpyApi.getConditions();
         return json.map((entry) => {
             return new ConditionModel(entry);

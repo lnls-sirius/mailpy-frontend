@@ -1,11 +1,11 @@
 import * as msal from "@azure/msal-browser";
-import Identity from '../model/Identity';
-import InteractiveSignInRequired from '../utils/InteractiveSignInRequired';
-import config from '../configs/msal';
+import Identity from "../model/Identity";
+import InteractiveSignInRequired from "../utils/InteractiveSignInRequired";
+import config from "../configs/msal";
 
 const loggerCallback = (logLevel, message, containsPii) => {
-  console.log(message);
-}
+    console.log(message);
+};
 
 class AuthService {
     constructor(configuration) {
@@ -21,17 +21,19 @@ class AuthService {
                     {
                         level: msal.LogLevel.Verbose,
                         piiLoggingEnabled: false,
-                        correlationId: '1234'
+                        correlationId: "1234"
                     }
                 )
             }
         };
-        console.log('AuthService:: initialized: ', this.msalConfig);
+        console.log("AuthService:: initialized: ", this.msalConfig);
         this.msalClient = new msal.PublicClientApplication(this.msalConfig);
-        console.log('AuthService:: initialized: ', this.msalConfig);
+        console.log("AuthService:: initialized: ", this.msalConfig);
     }
 
-    getServiceName() { return 'Microsoft'; }
+    getServiceName() {
+        return "Microsoft";
+    }
 
     async signIn() {
         const response = await this.msalClient.loginPopup(this.signInOptions);
@@ -57,10 +59,10 @@ class AuthService {
 
                     // can't do silent auth - this isn't generally an issue here.
 
-                    if (error.errorCode === 'block_token_requests') {
+                    if (error.errorCode === "block_token_requests") {
                         throw new InteractiveSignInRequired();
                     }
-                    console.warn('ClientAuthError: error code = ', error.errorCode);
+                    console.warn("ClientAuthError: error code = ", error.errorCode);
                 }
                 throw error;
             }

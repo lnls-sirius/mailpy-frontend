@@ -17,12 +17,12 @@ class Entry {
         this.pvname = pvname;
         this.unit = unit;
         this.condition = condition;
-        this.alarm_values = alarm_values;
+        this.alarmValues = alarm_values;
         this.emails = emails;
-        this.email_timeout = email_timeout;
+        this.emailTimeout = email_timeout;
         this.subject = subject;
         this.group = group;
-        this.warning_message = warning_message;
+        this.warningMessage = warning_message;
     }
 }
 export default Entry;

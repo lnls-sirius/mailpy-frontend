@@ -43,7 +43,7 @@ const Header = () => {
                     Mailpy - MGMT
                 </Typography>
                 <Typography variant="subtitle2" style={{marginLeft: "20px"}}>
-            In order to make changes to the mailing system, please contact 
+            In order to make changes to the mailing system, please contact
                 claudio.carneiro@cnpem.br
                 </Typography>
             </Toolbar>

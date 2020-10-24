@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 
 import Router from "./Router";
 
@@ -41,11 +40,11 @@ const Header = () => {
         <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>
                 <Typography variant="h6" noWrap>
-            Mailpy - MGMT
-                    <Typography variant="subtitle2">
-        In order to make changes to the mailing system, please contact{" "}
-                        <a>claudio.carneiro@cnpem.br</a>
-                    </Typography>
+                    Mailpy - MGMT
+                </Typography>
+                <Typography variant="subtitle2" style={{marginLeft: "20px"}}>
+            In order to make changes to the mailing system, please contact
+                claudio.carneiro@cnpem.br
                 </Typography>
             </Toolbar>
         </AppBar>

@@ -2,7 +2,7 @@ import React from "react";
 
 import { DataGrid } from "@material-ui/data-grid";
 
-import api from "../api";
+import MailpyController from '../controllers/Mailpy';
 
 const columns = [
     {field: "pvname", headerName: "PV Name", width: 260},
@@ -25,11 +25,8 @@ class EntriesTable extends React.Component {
     }
 
     updateEntries = async () => {
-        const entries = await api.getEntries();
-        entries.forEach(e=> {
-            e.id = e._id;
-        });
-        this.setState({ entries: entries });
+        const res = await MailpyController.getEntries();
+        this.setState({ entries: res});
     }
 
     componentDidMount() {

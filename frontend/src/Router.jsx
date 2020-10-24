@@ -7,6 +7,7 @@ import {
     Link,
     Redirect,
 } from "react-router-dom";
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
@@ -18,9 +19,13 @@ import Entries from "./components/Entries";
 import Groups from "./components/Groups";
 import Conditions from "./components/Conditions";
 import Home from "./components/Home";
+import SignInButton from "./components/SignInButton";
 
 function AppRouterButtons(props) {
     const { classes } = props;
+    const identity = useSelector((state) => state.identity);
+    const name = identity?identity.account.name: "";
+    const email = identity?identity.account.username: "";
     return (
         <Drawer
             className={classes.drawer}
@@ -47,6 +52,19 @@ function AppRouterButtons(props) {
                 ))}
             </List>
             <Divider />
+            <SignInButton/>
+            <Divider />
+            <ListItem>
+                <ListItemText
+                    primary={name}
+                    secondary={
+                        <React.Fragment>
+                            {email}
+                        </React.Fragment>
+
+                    }
+                />
+            </ListItem>
         </Drawer>
     );
 }
